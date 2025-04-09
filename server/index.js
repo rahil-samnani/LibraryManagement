@@ -24,7 +24,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Database Connection
-mongoose.connect('mongodb://127.0.0.1:27017/libraryDB', {
+mongoose.connect('mongodb+srv://rahil:eLHATTVk1zL0nWSx@bookmanagement.s3ohruj.mongodb.net/?retryWrites=true&w=majority&appName=BookManagement', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
