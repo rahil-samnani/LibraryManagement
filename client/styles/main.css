@@ -1,0 +1,67 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    background-color: #f5f5f5;
+  }
+  
+  .navbar {
+    margin-bottom: 20px;
+  }
+  
+  .panel {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .jumbotron {
+    background-color: #fff;
+    border: 1px solid #e3e3e3;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table img {
+    border: 1px solid #ddd;
+  }
+  
+  .btn {
+    border-radius: 3px;
+  }
+  
+  .panel-heading {
+    font-weight: bold;
+  }
+  
+  .alert {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Book card styling */
+  .book-card {
+    height: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .book-card .panel-body {
+    padding: 15px;
+  }
+  
+  .book-card img {
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 15px;
+  }
+  
+  /* Form styling */
+  .form-control:focus {
+    border-color: #66afe9;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+  }
+  
+  /* Login/Register forms */
+  .login-form, .register-form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  

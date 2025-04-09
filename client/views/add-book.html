@@ -1,0 +1,121 @@
+// client/views/book-detail.html - Book detail page
+`<div class="row">
+  <div class="col-md-12">
+    <ol class="breadcrumb">
+      <li><a href="/books">Books</a></li>
+      <li class="active">{{ book.title }}</li>
+    </ol>
+    
+    <div class="alert alert-danger" ng-if="error">{{ error }}</div>
+    <div class="alert alert-success" ng-if="success">{{ success }}</div>
+    
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Book Details</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-4">
+            <img ng-src="{{ book.imageUrl }}" alt="{{ book.title }}" class="img-responsive img-thumbnail">
+          </div>
+          <div class="col-md-8">
+            <h2>{{ book.title }}</h2>
+            <p><strong>Author:</strong> {{ book.author }}</p>
+            <p><strong>Genre:</strong> {{ book.genre }}</p>
+            <p><strong>Price:</strong> ${{ book.price }}</p>
+            <p><strong>Description:</strong> {{ book.description }}</p>
+            
+            <div class="well">
+              <h4>Manage Inventory</h4>
+              <div class="form-group">
+                <label for="copies">Available Copies:</label>
+                <div class="input-group" style="max-width: 200px;">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="book.copies = book.copies - 1" ng-disabled="book.copies <= 0">-</button>
+                  </span>
+                  <input type="number" id="copies" class="form-control text-center" ng-model="book.copies" min="0">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="book.copies = book.copies + 1">+</button>
+                  </span>
+                </div>
+              </div>
+              <button class="btn btn-primary" ng-click="updateCopies(book)">Update Stock</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`
+
+// client/views/add-book.html - Add book page
+`<div class="row">
+  <div class="col-md-12">
+    <ol class="breadcrumb">
+      <li><a href="/books">Books</a></li>
+      <li class="active">Add New Book</li>
+    </ol>
+    
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add New Book</h3>
+      </div>
+      <div class="panel-body">
+        <div class="alert alert-danger" ng-if="error">{{ error }}</div>
+        <div class="alert alert-success" ng-if="success">{{ success }}</div>
+        
+        <form ng-submit="addBook()">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" ng-model="book.title" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="author">Author</label>
+                <input type="text" class="form-control" id="author" ng-model="book.author" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="genre">Genre</label>
+                <select class="form-control" id="genre" ng-model="book.genre" required>
+                  <option value="">Select Genre</option>
+                  <option ng-repeat="genre in genres" value="{{ genre }}">{{ genre }}</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="price">Price ($)</label>
+                <input type="number" step="0.01" min="0" class="form-control" id="price" ng-model="book.price" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="copies">Number of Copies</label>
+                <input type="number" min="0" class="form-control" id="copies" ng-model="book.copies" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="imageUrl">Image URL</label>
+                <input type="url" class="form-control" id="imageUrl" ng-model="book.imageUrl" placeholder="https://example.com/book-image.jpg">
+                <p class="help-block">Leave blank for default image</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" rows="5" ng-model="book.description" required></textarea>
+          </div>
+          
+          <div class="form-group">
+            <button type="submit" class="btn btn-success">Add Book</button>
+            <a href="/books" class="btn btn-default">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>`

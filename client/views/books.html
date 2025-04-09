@@ -1,0 +1,82 @@
+`<div class="row">
+  <div class="col-md-12">
+    <h2>Book Collection</h2>
+    <div class="alert alert-danger" ng-if="error">{{ error }}</div>
+    <div class="alert alert-success" ng-if="success">{{ success }}</div>
+    
+    <!-- Filter Controls -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Filter Books</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="form-group">
+              <label for="searchText">Search</label>
+              <input type="text" class="form-control" id="searchText" ng-model="filter.searchText" placeholder="Search by title, author, or description">
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="form-group">
+              <label for="genreFilter">Genre</label>
+              <select class="form-control" id="genreFilter" ng-model="filter.genre">
+                <option value="">All Genres</option>
+                <option ng-repeat="genre in genres" value="{{ genre }}">{{ genre }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-default btn-block" style="margin-top: 25px;" ng-click="resetFilters()">Reset Filters</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Books Table -->
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>Price</th>
+            <th>Available Copies</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="book in books | filter:filterByGenre | filter:filterByText">
+            <td><img ng-src="{{ book.imageUrl }}" alt="{{ book.title }}" class="img-thumbnail" style="max-height: 80px;"></td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.genre }}</td>
+            <td>${{ book.price }}</td>
+            <td>
+              <div class="input-group" style="max-width: 150px;">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button" ng-click="book.copies = book.copies - 1" ng-disabled="book.copies <= 0">-</button>
+                </span>
+                <input type="number" class="form-control text-center" ng-model="book.copies" min="0">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button" ng-click="book.copies = book.copies + 1">+</button>
+                </span>
+              </div>
+            </td>
+            <td>
+              <div class="btn-group">
+                <a href="/books/{{ book._id }}" style="margin: 2px;" class="btn btn-info btn-sm">View</a>
+                <button class="btn btn-primary btn-sm" style="margin: 2px;" ng-click="updateCopies(book)">Update Stock</button>
+              </div>
+            </td>
+          </tr>
+          <tr ng-if="(books | filter:filterByGenre | filter:filterByText).length === 0">
+            <td colspan="7" class="text-center">No books match your filter criteria</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>`
