@@ -1,5 +1,4 @@
-// client/views/book-detail.html - Book detail page
-`<div class="row">
+<div class="row">
   <div class="col-md-12">
     <ol class="breadcrumb">
       <li><a href="/books">Books</a></li>
@@ -46,10 +45,9 @@
       </div>
     </div>
   </div>
-</div>`
+</div>
 
-// client/views/add-book.html - Add book page
-`<div class="row">
+<div class="row">
   <div class="col-md-12">
     <ol class="breadcrumb">
       <li><a href="/books">Books</a></li>
@@ -77,12 +75,19 @@
                 <input type="text" class="form-control" id="author" ng-model="book.author" required>
               </div>
               
+              <!-- Genre -->
               <div class="form-group">
                 <label for="genre">Genre</label>
-                <select class="form-control" id="genre" ng-model="book.genre" required>
+                <select class="form-control" id="genre" ng-model="book.genre" ng-change="toggleCustomGenre()" required>
                   <option value="">Select Genre</option>
                   <option ng-repeat="genre in genres" value="{{ genre }}">{{ genre }}</option>
                 </select>
+              </div>
+
+              <!-- Custom Genre (conditionally visible) -->
+              <div class="form-group" ng-show="isCustomGenre">
+                <label for="customGenre">Custom Genre</label>
+                <input type="text" class="form-control" id="customGenre" ng-model="customGenre">
               </div>
             </div>
             
@@ -118,4 +123,4 @@
       </div>
     </div>
   </div>
-</div>`
+</div>

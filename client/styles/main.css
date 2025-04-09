@@ -1,67 +1,259 @@
+/* Base styles */
 body {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    background-color: #f5f5f5;
-  }
-  
-  .navbar {
-    margin-bottom: 20px;
-  }
-  
-  .panel {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .jumbotron {
-    background-color: #fff;
-    border: 1px solid #e3e3e3;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .table img {
-    border: 1px solid #ddd;
-  }
-  
-  .btn {
-    border-radius: 3px;
-  }
-  
-  .panel-heading {
-    font-weight: bold;
-  }
-  
-  .alert {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  
-  /* Book card styling */
-  .book-card {
-    height: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .book-card .panel-body {
-    padding: 15px;
-  }
-  
-  .book-card img {
-    height: 200px;
-    object-fit: contain;
-    margin-bottom: 15px;
-  }
-  
-  /* Form styling */
-  .form-control:focus {
-    border-color: #66afe9;
-    outline: 0;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
-  }
-  
-  /* Login/Register forms */
-  .login-form, .register-form {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Light mode (default in bootstrap) */
+body.light-mode {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Dark mode (default as requested) */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+/* Panel styling */
+.dark-mode .panel {
+  background-color: #1e1e1e;
+  border-color: #2d2d2d;
+}
+
+.dark-mode .panel-default > .panel-heading {
+  background-color: #2d2d2d;
+  border-color: #2d2d2d;
+  color: #e0e0e0;
+}
+
+.dark-mode .panel-primary > .panel-heading {
+  background-color: #375a7f;
+  border-color: #375a7f;
+}
+
+.dark-mode .panel-success > .panel-heading {
+  background-color: #00bc8c;
+  border-color: #00bc8c;
+}
+
+.dark-mode .jumbotron {
+  background-color: #1e1e1e;
+  border-color: #2d2d2d;
+}
+
+/* Table styling */
+.dark-mode .table {
+  color: #e0e0e0;
+}
+
+.dark-mode .table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #252525;
+}
+
+.dark-mode .table-hover > tbody > tr:hover {
+  background-color: #2d2d2d;
+}
+
+/* Form styling */
+.dark-mode .form-control {
+  background-color: #2d2d2d;
+  border-color: #3d3d3d;
+  color: #e0e0e0;
+}
+
+.dark-mode .form-control:focus {
+  border-color: #375a7f;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(55, 90, 127, .6);
+}
+
+/* Well styling */
+.dark-mode .well {
+  background-color: #2d2d2d;
+  border-color: #3d3d3d;
+}
+
+/* Navbar styling */
+.dark-mode .navbar-default {
+  background-color: #1e1e1e;
+  border-color: #2d2d2d;
+}
+
+.dark-mode .navbar-default .navbar-brand,
+.dark-mode .navbar-default .navbar-nav > li > a {
+  color: #e0e0e0;
+}
+
+.dark-mode .navbar-default .navbar-nav > .active > a,
+.dark-mode .navbar-default .navbar-nav > .active > a:hover,
+.dark-mode .navbar-default .navbar-nav > .active > a:focus {
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+}
+
+.dark-mode .dropdown-menu {
+  background-color: #1e1e1e;
+  border-color: #2d2d2d;
+}
+
+.dropdown-menu > li > a {
+  color: red;
+}
+
+.dropdown-menu > li > a:hover {
+  background-color: red;
+  color: #e0e0e0;
+}
+
+.dark-mode .dropdown-menu > li > a:focus {
+  background-color: red;
+  color: #e0e0e0;
+}
+
+/* Alert styling */
+.dark-mode .alert-danger {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.dark-mode .alert-success {
+  background-color: #00bc8c;
+  color: #fff;
+}
+
+/* Button improvements */
+.btn {
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+
+.dark-mode .btn-default {
+  background-color: #3d3d3d;
+  border-color: #3d3d3d;
+  color: #e0e0e0;
+}
+
+.dark-mode .btn-default:hover,
+.dark-mode .btn-default:focus {
+  background-color: #4d4d4d;
+  border-color: #4d4d4d;
+  color: #e0e0e0;
+}
+
+/* Toggle switch styling */
+.mode-toggle {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin: 0 10px;
+}
+
+.mode-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #375a7f;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #375a7f;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Additional improvements */
+.book-card .panel-body {
+  padding: 15px;
+}
+
+.book-card img {
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.dark-mode .breadcrumb {
+  background-color: #2d2d2d;
+}
+
+.dark-mode .breadcrumb > li + li:before {
+  color: #999;
+}
+
+.dark-mode .breadcrumb > .active {
+  color: #999;
+}
+
+/* Add icon fonts for night/day toggle */
+.fa-moon, .fa-sun {
+  margin: 0 5px;
+  vertical-align: middle;
+}
+
+.dark-mode .fa-moon {
+  color: #e0e0e0;
+}
+
+.dark-mode .fa-sun {
+  color: #f39c12;
+}
+
+.light-mode .fa-moon {
+  color: #375a7f;
+}
+
+.light-mode .fa-sun {
+  color: #f39c12;
+}
+
+/* Pagination styling */
+.dark-mode .pagination > li > a,
+.dark-mode .pagination > li > span {
+  background-color: #2d2d2d;
+  border-color: #3d3d3d;
+  color: #e0e0e0;
+}
+
+.dark-mode .pagination > .active > a,
+.dark-mode .pagination > .active > span {
+  background-color: #375a7f;
+  border-color: #375a7f;
+}
